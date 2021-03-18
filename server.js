@@ -15,7 +15,6 @@ const DB       = "NoteDB";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.resolve(__dirname, '../client/build')));
 // app.use(cors());
 
 // Establish DB connection
@@ -79,9 +78,12 @@ app.delete("/api/note/delete", (req,res)=>{
   });
 });
 
-// All other GET requests not handled before will return our React app
+// serve up production assets
+app.use(express.static('client/build'));
+// let the react app to handle any unknown routes 
+// serve up the index.html if express does'nt recognize the route
 app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
+res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
 });
 
 app.listen(PORT, () => {
