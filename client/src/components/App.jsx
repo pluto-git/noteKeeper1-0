@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Note from "./Note";
 import Header from "./Header";
-import Footer from "./Footer";
 import axios from "axios";
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
@@ -97,7 +96,7 @@ function App() {
             onDelete={onDelete}
           />
         )):null}
-    <Footer />
+    
     </>
   );
 }
